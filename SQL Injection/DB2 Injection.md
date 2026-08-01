@@ -105,6 +105,13 @@ Using the `QSYS2.QCMDEXC()` on IBM i (previously named AS-400), it is possibile 
 '||QCMDEXC('QSH CMD(''system dspusrprf PROFILE'')')
 ```
 
+In many cases, the command output is not returned directly. The following approach works in two steps: first, execute the command and redirect both standard output and standard error to `/tmp/qsh_output.txt` then, read the contents of that file using `QSYS2.IFS_READ_UTF8`.
+
+```sql
+QSYS2.QCMDEXC('QSH CMD(''system dspusrprf PROFILE > /tmp/qsh_output.txt 2>&1'')')
+SELECT LINE FROM TABLE(QSYS2.IFS_READ_UTF8('/tmp/qsh_output.txt',2147483647,'NONE'))
+```
+
 ## DB2 WAF Bypass
 
 ### Avoiding Quotes
