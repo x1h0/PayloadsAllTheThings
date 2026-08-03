@@ -464,7 +464,7 @@ It is sometimes exposed publicly via a standard endpoint:
 - `/openid/connect/jwks.json`
 - `/api/keys`
 - `/api/v1/keys`
-- [`/{tenant}/oauth2/v1/certs`](https://docs.theidentityhub.com/doc/Protocol-Endpoints/OpenID-Connect/OpenID-Connect-JWKS-Endpoint.html)
+- [`/{tenant}/oauth2/v1/certs`](https://web.archive.org/web/20240116204119/https://docs.theidentityhub.com/doc/Protocol-Endpoints/OpenID-Connect/OpenID-Connect-JWKS-Endpoint.html)
 
 You should create your own key pair for this attack and host it. It should look like that:
 

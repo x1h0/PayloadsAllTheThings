@@ -115,7 +115,7 @@ Another way to collect sensitive data is to set a javascript keylogger.
 
 More exploits at [http://www.xss-payloads.com/payloads-list.html?a#category=all](http://www.xss-payloads.com/payloads-list.html?a#category=all):
 
-- [Taking screenshots using XSS and the HTML5 Canvas](https://www.idontplaydarts.com/2012/04/taking-screenshots-using-xss-and-the-html5-canvas/)
+- [Taking screenshots using XSS and the HTML5 Canvas](https://web.archive.org/web/20120426084546/https://www.idontplaydarts.com/2012/04/taking-screenshots-using-xss-and-the-html5-canvas/)
 - [JavaScript Port Scanner](http://www.gnucitizen.org/blog/javascript-port-scanner/)
 - [Network Scanner](http://www.xss-payloads.com/payloads/scripts/websocketsnetworkscan.js.html)
 - [.NET Shell execution](http://www.xss-payloads.com/payloads/scripts/dotnetexec.js.html)
@@ -491,9 +491,9 @@ document.getElementById('btn').onclick = function(e){
 
 > XSS Hunter allows you to find all kinds of cross-site scripting vulnerabilities, including the often-missed blind XSS. The service works by hosting specialized XSS probes which, upon firing, scan the page and send information about the vulnerable page to the XSS Hunter service.
 
-XSS Hunter is deprecated, it was available at [https://xsshunter.com/app](https://xsshunter.com/app).
+XSS Hunter is deprecated, it was available at [https://xsshunter.com](https://web.archive.org/web/20180528161032/https://xsshunter.com/features).
 
-You can set up an alternative version
+You can set up an alternative version.
 
 - Self-hosted version from [mandatoryprogrammer/xsshunter-express](https://github.com/mandatoryprogrammer/xsshunter-express)
 - Hosted on [xsshunter.trufflesecurity.com](https://xsshunter.trufflesecurity.com/)

