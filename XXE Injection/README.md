@@ -454,9 +454,9 @@ cat utf8exploit.xml | iconv -f UTF-8 -t UTF-16BE > utf16exploit.xml
 
 In the HTTP request try to switch the `Content-Type` from **JSON** to **XML**,
 
-| Content Type       | Data                               |
-| ------------------ | ---------------------------------- |
-| `application/json` | `{"search":"name","value":"test"}` |
+| Content Type       | Data                                                                                           |
+| ------------------ | ---------------------------------------------------------------------------------------------- |
+| `application/json` | `{"search":"name","value":"test"}`                                                             |
 | `application/xml`  | `<?xml version="1.0" encoding="UTF-8" ?><root><search>name</search><value>data</value></root>` |
 
 - XML documents must contain one root (`<root>`) element that is the parent of all other elements.

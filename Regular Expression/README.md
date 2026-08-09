@@ -49,11 +49,11 @@ Backtracking in regular expressions occurs when the regex engine tries to match 
 
 **PHP PCRE configuration options**:
 
-| Name                 | Default | Note |
-|----------------------|---------|---------|
-| pcre.backtrack_limit | 1000000 | 100000 for `PHP < 5.3.7`|
-| pcre.recursion_limit | 100000  | / |
-| pcre.jit             | 1       | / |
+| Name                 | Default  | Note                     |
+| -------------------- | -------- | ------------------------ |
+| pcre.backtrack_limit |  1000000 | 100000 for `PHP < 5.3.7` |
+| pcre.recursion_limit |  100000  | /                        |
+| pcre.jit             | 1        | /                        |
 
 Sometimes it is possible to force the regex to exceed more than 100 000 recursions which will cause a ReDOS and make `preg_match` returning false:
 

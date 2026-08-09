@@ -18,11 +18,11 @@
 
 ## Detection
 
-| Data           | Description         |
-| -------------- | ------------------- |
+| Data           | Description          |
+| -------------- | -------------------- |
 | `AAEAAD` (Hex) | .NET BinaryFormatter |
-| `FF01` (Hex)   | .NET ViewState |
-| `/w` (Base64)   | .NET ViewState |
+| `FF01` (Hex)   | .NET ViewState       |
+| `/w` (Base64)  | .NET ViewState       |
 
 Example: `AAEAAAD/////AQAAAAAAAAAMAgAAAF9TeXN0ZW0u[...]0KPC9PYmpzPgs=`
 

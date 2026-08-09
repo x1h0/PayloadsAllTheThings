@@ -55,14 +55,14 @@ A GUID (Globally Unique Identifier) or UUID (Universally Unique Identifier) is a
 Version identification: `xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx`
 The four-bit M and the 1- to 3-bit N fields code the format of the UUID itself.
 
-| Version  | Notes  |
-|----------|--------|
-| 0 | Only `00000000-0000-0000-0000-000000000000` |
-| 1 | based on time, or clock sequence |
-| 2 | reserved in the RFC 4122, but omitted in many implementations |
-| 3 | based on a MD5 hash |
-| 4 | randomly generated |
-| 5 | based on a SHA1 hash |
+| Version | Notes                                                         |
+| ------- | ------------------------------------------------------------- |
+| 0       | Only `00000000-0000-0000-0000-000000000000`                   |
+| 1       | based on time, or clock sequence                              |
+| 2       | reserved in the RFC 4122, but omitted in many implementations |
+| 3       | based on a MD5 hash                                           |
+| 4       | randomly generated                                            |
+| 5       | based on a SHA1 hash                                          |
 
 ### Tools
 

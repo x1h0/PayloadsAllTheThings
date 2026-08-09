@@ -29,14 +29,14 @@ Be very careful as this is most likely **out-of-scope** and can have a high impa
 
 When a process is writing a file on the server, try to reach the maximum number of files allowed by the filesystem format. The system should output a message: `No space left on device` when the limit is reached.
 
-| Filesystem | Maximum Inodes |
-| ---        | --- |
-| BTRFS      | 2^64 (~18 quintillion) |
-| EXT4       | ~4 billion |
-| FAT32      | ~268 million files |
+| Filesystem | Maximum Inodes             |
+| ---------- | -------------------------- |
+| BTRFS      | 2^64 (~18 quintillion)     |
+| EXT4       | ~4 billion                 |
+| FAT32      | ~268 million files         |
 | NTFS       | ~4.2 billion (MFT entries) |
-| XFS        | Dynamic (disk size) |
-| ZFS        | ~281 trillion |
+| XFS        | Dynamic (disk size)        |
+| ZFS        | ~281 trillion              |
 
 An alternative of this technique would be to fill a file used by the application until it reaches the maximum size allowed by the filesystem, for example it can occur on a SQLite database or a log file.
 

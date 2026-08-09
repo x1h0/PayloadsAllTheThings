@@ -119,12 +119,12 @@ Inject a `Location` header to force a redirect for the user.
 
 Firefox followed the spec by stripping off any out-of-range characters when setting cookies instead of encoding them.
 
-| UTF-8 Character | Hex | Unicode | Stripped |
-| --------- | --- | ------- | -------- |
-| `嘊` | `%E5%98%8A` | `\u560a` | `%0A` (\n) |
-| `嘍` | `%E5%98%8D` | `\u560d` | `%0D` (\r) |
-| `嘾` | `%E5%98%BE` | `\u563e` | `%3E` (>)  |
-| `嘼` | `%E5%98%BC` | `\u563c` | `%3C` (<)  |
+| UTF-8 Character | Hex         | Unicode  | Stripped   |
+| --------------- | ----------- | -------- | ---------- |
+| `嘊`            | `%E5%98%8A` | `\u560a` | `%0A` (\n) |
+| `嘍`            | `%E5%98%8D` | `\u560d` | `%0D` (\r) |
+| `嘾`            | `%E5%98%BE` | `\u563e` | `%3E` (>)  |
+| `嘼`            | `%E5%98%BC` | `\u563c` | `%3C` (<)  |
 
 The UTF-8 character `嘊` contains `0a` in the last part of its hex format, which would be converted as `\n` by Firefox.
 

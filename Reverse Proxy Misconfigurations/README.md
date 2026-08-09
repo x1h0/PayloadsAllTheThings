@@ -146,11 +146,11 @@ daemon:x:2:2:daemon:/sbin:/sbin/nologin
 
 Because Caddy is running the templates directive, it will evaluate anything in curly braces inside the context, including things from untrusted input. The `readFile` function is available in Caddy templates, so the attacker's input causes Caddy to actually read `/etc/passwd` and insert its content into the HTTP response.
 
-| Payload                       | Description |
-| ----------------------------- | ----------- |
+| Payload                       | Description                   |
+| ----------------------------- | ----------------------------- |
 | `{{env "VAR_NAME"}}`          | Get an environment variable   |
 | `{{listFiles "/"}}`           | List all files in a directory |
-| `{{readFile "path/to/file"}}` | Read a file |
+| `{{readFile "path/to/file"}}` | Read a file                   |
 
 ## Labs
 

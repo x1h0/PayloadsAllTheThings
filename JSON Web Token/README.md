@@ -59,38 +59,38 @@ The most basic JWT header is the following JSON.
 
 Other parameters are registered in the RFC.
 
-| Parameter | Definition                           | Description |
-|-----------|--------------------------------------|-------------|
-| alg       | Algorithm                            | Identifies the cryptographic algorithm used to secure the JWS |
-| jku       | JWK Set URL                          | Refers to a resource for a set of JSON-encoded public keys    |
-| jwk       | JSON Web Key                         | The public key used to digitally sign the JWS                 |
-| kid       | Key ID                               | The key used to secure the JWS                                |
-| x5u       | X.509 URL                            | URL for the X.509 public key certificate or certificate chain |
+| Parameter | Definition                           | Description                                                                                     |
+| --------- | ------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| alg       | Algorithm                            | Identifies the cryptographic algorithm used to secure the JWS                                   |
+| jku       | JWK Set URL                          | Refers to a resource for a set of JSON-encoded public keys                                      |
+| jwk       | JSON Web Key                         | The public key used to digitally sign the JWS                                                   |
+| kid       | Key ID                               | The key used to secure the JWS                                                                  |
+| x5u       | X.509 URL                            | URL for the X.509 public key certificate or certificate chain                                   |
 | x5c       | X.509 Certificate Chain              | X.509 public key certificate or certificate chain in PEM-encoded used to digitally sign the JWS |
 | x5t       | X.509 Certificate SHA-1 Thumbprint)  | Base64 url-encoded SHA-1 thumbprint (digest) of the DER encoding of the X.509 certificate       |
 | x5t#S256  | X.509 Certificate SHA-256 Thumbprint | Base64 url-encoded SHA-256 thumbprint (digest) of the DER encoding of the X.509 certificate     |
-| typ       | Type                                 | Media Type. Usually `JWT` |
-| cty       | Content Type                         | This header parameter is not recommended to use |
-| crit      | Critical                             | Extensions and/or JWA are being used |
+| typ       | Type                                 | Media Type. Usually `JWT`                                                                       |
+| cty       | Content Type                         | This header parameter is not recommended to use                                                 |
+| crit      | Critical                             | Extensions and/or JWA are being used                                                            |
 
 Default algorithm is "HS256" (HMAC SHA256 symmetric encryption).
 "RS256" is used for asymmetric purposes (RSA asymmetric encryption and private key signature).
 
-| `alg` Param Value  | Digital Signature or MAC Algorithm | Requirements |
-|-------|------------------------------------------------|---------------|
-| HS256 | HMAC using SHA-256                             | Required      |
-| HS384 | HMAC using SHA-384                             | Optional      |
-| HS512 | HMAC using SHA-512                             | Optional      |
-| RS256 | RSASSA-PKCS1-v1_5 using SHA-256                | Recommended   |
-| RS384 | RSASSA-PKCS1-v1_5 using SHA-384                | Optional      |
-| RS512 | RSASSA-PKCS1-v1_5 using SHA-512                | Optional      |
-| ES256 | ECDSA using P-256 and SHA-256                  | Recommended   |
-| ES384 | ECDSA using P-384 and SHA-384                  | Optional      |
-| ES512 | ECDSA using P-521 and SHA-512                  | Optional      |
-| PS256 | RSASSA-PSS using SHA-256 and MGF1 with SHA-256 | Optional      |
-| PS384 | RSASSA-PSS using SHA-384 and MGF1 with SHA-384 | Optional      |
-| PS512 | RSASSA-PSS using SHA-512 and MGF1 with SHA-512 | Optional      |
-| none | No digital signature or MAC performed          | Required      |
+| `alg` Param Value | Digital Signature or MAC Algorithm             | Requirements |
+| ----------------- | ---------------------------------------------- | ------------ |
+| HS256             | HMAC using SHA-256                             | Required     |
+| HS384             | HMAC using SHA-384                             | Optional     |
+| HS512             | HMAC using SHA-512                             | Optional     |
+| RS256             | RSASSA-PKCS1-v1_5 using SHA-256                | Recommended  |
+| RS384             | RSASSA-PKCS1-v1_5 using SHA-384                | Optional     |
+| RS512             | RSASSA-PKCS1-v1_5 using SHA-512                | Optional     |
+| ES256             | ECDSA using P-256 and SHA-256                  | Recommended  |
+| ES384             | ECDSA using P-384 and SHA-384                  | Optional     |
+| ES512             | ECDSA using P-521 and SHA-512                  | Optional     |
+| PS256             | RSASSA-PSS using SHA-256 and MGF1 with SHA-256 | Optional     |
+| PS384             | RSASSA-PSS using SHA-384 and MGF1 with SHA-384 | Optional     |
+| PS512             | RSASSA-PSS using SHA-512 and MGF1 with SHA-512 | Optional     |
+| none              | No digital signature or MAC performed          | Required     |
 
 Inject headers with [ticarpi/jwt_tool](https://github.com/ticarpi/jwt_tool): `python3 jwt_tool.py JWT_HERE -I -hc header1 -hv testval1 -hc header2 -hv testval2`
 

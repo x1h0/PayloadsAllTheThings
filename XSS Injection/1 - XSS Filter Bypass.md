@@ -405,7 +405,7 @@ Use Unicode characters `U+FF1C` and `U+FF1E`, refer to [Bypass using Unicode](#b
 ISO-2022-JP uses escape characters to switch between several character sets.
 
 | Escape    | Encoding        |
-|-----------|-----------------|
+| --------- | --------------- |
 | `\x1B (B` | ASCII           |
 | `\x1B (J` | JIS X 0201 1976 |
 | `\x1B $@` | JIS X 0208 1978 |
@@ -414,9 +414,9 @@ ISO-2022-JP uses escape characters to switch between several character sets.
 Using the [code table](https://en.wikipedia.org/wiki/JIS_X_0201#Codepage_layout), we can find multiple characters that will be transformed when switching from **ASCII** to **JIS X 0201 1976**.
 
 | Hex  | ASCII | JIS X 0201 1976 |
-| ---- | --- | --- |
-| 0x5c | `\` | `¥` |
-| 0x7e | `~` | `‾` |
+| ---- | ----- | --------------- |
+| 0x5c | `\`   | `¥`             |
+| 0x7e | `~`   | `‾`             |
 
 **Example**:
 
@@ -479,18 +479,18 @@ This payload takes advantage of Unicode escape sequences to obscure the JavaScri
 
 It uses Unicode escape sequences to represent characters.
 
-| Unicode  | ASCII     |
-| -------- | --------- |
-| `\u0061` | a         |
-| `\u006C` | l         |
-| `\u0065` | e         |
-| `\u0072` | r         |
-| `\u0074` | t         |
+| Unicode  | ASCII |
+| -------- | ----- |
+| `\u0061` | a     |
+| `\u006C` | l     |
+| `\u0065` | e     |
+| `\u0072` | r     |
+| `\u0074` | t     |
 
 Same thing with these Unicode characters.
 
 | Unicode (UTF-8 encoded) | Unicode Name                 | ASCII | ASCII Name     |
-| ----------------------- | ---------------------------- | ----- | ---------------|
+| ----------------------- | ---------------------------- | ----- | -------------- |
 | `\uFF1C` (%EF%BC%9C)    | FULLWIDTH LESS­THAN SIGN      | <     | LESS­THAN       |
 | `\uFF1E` (%EF%BC%9E)    | FULLWIDTH GREATER­THAN SIGN   | >     | GREATER­THAN    |
 | `\u02BA` (%CA%BA)       | MODIFIER LETTER DOUBLE PRIME | "     | QUOTATION MARK |
@@ -504,12 +504,12 @@ An example payload could be `ʺ＞＜svg onload=alert(/XSS/)＞/`, which would l
 
 When Unicode characters are converted to another case, they might bypass a filter look for specific keywords.
 
-| Unicode  | Transform | Character |
-| -------- | --------- | --------- |
-| `İ` (%c4%b0) | `toLowerCase()` | i |
-| `ı` (%c4%b1) | `toUpperCase()` | I |
-| `ſ` (%c5%bf) | `toUpperCase()` | S |
-| `K` (%E2%84) | `toLowerCase()` | k |
+| Unicode      | Transform       | Character |
+| ------------ | --------------- | --------- |
+| `İ` (%c4%b0) | `toLowerCase()` | i         |
+| `ı` (%c4%b1) | `toUpperCase()` | I         |
+| `ſ` (%c5%bf) | `toUpperCase()` | S         |
+| `K` (%E2%84) | `toLowerCase()` | k         |
 
 The following payloads become valid HTML tags after being converted.
 
